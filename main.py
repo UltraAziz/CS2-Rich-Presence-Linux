@@ -27,9 +27,8 @@ game_state_path = get_steam_path() + '\\steamapps\\common\\Counter-Strike Global
 cfg_exists = os.path.isfile(game_state_path)
 
 if not cfg_exists:
-    with open(game_state_config, 'r'):
-        print(f'Game State Integration file not found in CS2 directory, cloning file to {game_state_path}')
-        shutil.copyfile(game_state_config, game_state_path)
+    print(f'Game State Integration file not found in CS2 directory, cloning file to {game_state_path}')
+    shutil.copyfile(game_state_config, game_state_path)
 
 # Start GSI Server
 server = GSIServer(("127.0.0.1", 3000), "S8RL9Z6Y22TYQK45JB4V8PHRJJMD9DS9")
