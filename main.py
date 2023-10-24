@@ -39,22 +39,32 @@ client_id = '613057930992025640'
 RPC = Presence(client_id)
 RPC.connect()
 
-while True:
-    activity = server.get_info("player", "activity").capitalize()
+game_mode_names = {
+    'scrimcomp2v2': 'Wingman',
+}
 
-    if activity == "Playing":
-        game_mode = server.get_info('map', 'mode').capitalize()
+while True:
+    activity = server.get_info("player", "activity")
+
+    if activity == "playing":
+        game_mode_type = server.get_info('map', 'mode')
         t_wins = server.get_info('map', 'team_t')['score']
         ct_wins = server.get_info('map', 'team_ct')['score']
         map_name = server.get_info('map', 'name')
         team = server.get_info("player", "team")
 
-        large_image = map_name
-        details = f'{activity} {game_mode}'
-        state = f'[ {t_wins} : {ct_wins} ]'
-        small_image = 'ct_logo' if 'CT' else 't_logo'
+        try:
+            game_mode = game_mode_names[game_mode_type]
+        except KeyError:
+            # All other game modes have a proper name, as long as they're capitalized
+            game_mode = game_mode_type.capitalize()
 
-    elif activity == "Menu":
+        large_image = map_name
+        details = f'{activity.capitalize()} {game_mode}'
+        state = f'[ {ct_wins} : {t_wins} ]' if team == 'CT' else f'[ {t_wins} : {ct_wins} ]'
+        small_image = 'ct_logo' if team == 'CT' else 't_logo'
+
+    elif activity == "menu":
         large_image = "menu"
         details = "In main menu"
         state = "  "
