@@ -1,29 +1,22 @@
 import time
 from pypresence import Presence
 from server import GSIServer
-import winreg
 import struct
 import os
 import shutil
+import json
 
 game_state_config = 'gamestate_integration_GSI.cfg'
 def get_steam_path():
-    try:
-        hKey = None
-        if (8 * struct.calcsize("P")) == 64:
-            hKey = winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, 'SOFTWARE\\Wow6432Node\\Valve\\Steam')
-        else:
-            hKey = winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, 'SOFTWARE\\Valve\\Steam')
-
-        path = winreg.QueryValueEx(hKey, "InstallPath")
-        winreg.CloseKey(hKey)
-        return str(path[0])
-    except:
-        return None
+    with open("config.json", "r") as read_file:
+     config = json.load(read_file)
+     path = config["directory"]
+    
+     return str(path)
 
 
 # Initial setup
-game_state_path = get_steam_path() + '\\steamapps\\common\\Counter-Strike Global Offensive\\game\\csgo\\cfg\\' + game_state_config
+game_state_path = get_steam_path() + '/game/csgo/cfg/' + game_state_config
 cfg_exists = os.path.isfile(game_state_path)
 
 if not cfg_exists:
