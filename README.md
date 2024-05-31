@@ -1,5 +1,6 @@
 # CS2-Rich-Presence
 A simple py script for displaying details from CS2's Game State Integration into Discord Rich Presence, thanks to [pypresence](https://github.com/qwertyquerty/pypresence) and [csgo-gsi-python](https://github.com/Erlendeikeland/csgo-gsi-python) now running on linux!
+
 The original build used the winreg library to get the steam installation path which doesn't work on linux, this build uses a manually configurated json to find the install path.
 
 # Usage
