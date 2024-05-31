@@ -5,5 +5,12 @@ The original build used the winreg library to get the steam installation path wh
 # Usage
 In order for this script to work you must manually enter the install directory for CS2 in the config.json file.
 
+Example config.json file (defaut install path on debian based systems):
+```
+{
+"directory": "/home/USERNAME/.steam/debian-installation/steamapps/common/Counter-Strike Global Offensive"
+}
+```
 Then run the script and it should work fine, the message "CS:GO GSI Server starting.." stays indefenitely but everything still works, not sure if this is how it worked in the original build.
-this should work fine on all operating systems but if you are using windows I'd recommend using the original build as it spares you the hassle of specifying the install directory 
+
+this should work fine on all operating systems but if you are using windows I'd recommend using the [original build](https://github.com/skelcium/CS2-Rich-Presence) as it spares you the hassle of specifying the install directory 
