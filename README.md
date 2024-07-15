@@ -9,7 +9,7 @@ In order for this script to work you must manually enter the install directory f
 Example config.json file (defaut install path on debian based systems):
 ```
 {
-"directory": "/home/USERNAME/.steam/debian-installation/steamapps/common/Counter-Strike Global Offensive"
+"directory": "~/.steam/debian-installation/steamapps/common/Counter-Strike Global Offensive"
 }
 ```
 Then run the script and it should work fine, the message "CS:GO GSI Server starting.." stays indefenitely but everything still works, not sure if this is how it worked in the original build.
